@@ -8,7 +8,7 @@ public class Testador {
 	public static void main(String args[]) {
 
 		// Input data
-		String str_candidatos = "input/mine.csv",
+		String str_candidatos = "input/mycandidatos.csv",
 		       str_partido = "input/mypartidos.csv";
 		LocalDate data_eleicao = LocalDate.of(2020, 1, 29);
 
