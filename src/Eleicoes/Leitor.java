@@ -40,7 +40,7 @@ public class Leitor {
 		
 	}
 	
-	public static void leTodosCandidatos(String nome_arq_entrada, LocalDate dia_eleicao, Map<Integer, Partido> partidos) {
+	public static void leTodosCandidatos(String nome_arq_entrada, LocalDate dia_eleicao, Eleicao eleicao) {
 		try {
 			// Cria Scanner e abre o arquivo
 			File arq = new File(nome_arq_entrada);
@@ -53,9 +53,9 @@ public class Leitor {
 				// Define as configurações do scanner do candidato, linha do arquivo.
 				Scanner lineSc = new Scanner(line);
 				lineSc.useDelimiter(",");
-				// Le candidato o novo candidato e o adiciona ao respectivo partido
+				// Le candidato o novo candidato e o adiciona à eleicao
 				Candidato novo_candidato = leCandidato(lineSc, dia_eleicao);
-				partidos.get(novo_candidato.getNum_partido()).add_Candidato(novo_candidato);
+				eleicao.addCandidato(novo_candidato);
 
 				lineSc.close();
 			}
@@ -78,9 +78,8 @@ public class Leitor {
 	}
 
 	// Le todos os partidos
-	public static Map<Integer, Partido> leTodosPartidos(String arq_nome){
+	public static void leTodosPartidos(String arq_nome, Eleicao eleicao){
 		// Cria set de partidos
-		Map<Integer, Partido> partidos = new HashMap<Integer, Partido>();
 		try {
 			File arq = new File(arq_nome);
 			Scanner todoSc = new Scanner(arq);
@@ -91,9 +90,9 @@ public class Leitor {
 				// Define as configurações do scanner do partido, linha do arquivo.
 				Scanner lineSc = new Scanner(line);
 				lineSc.useDelimiter(",");
-				// Le partido e adiciona ao set.
+				// Le partido e adiciona ele à eleição.
 				Partido novo_partido = lePartido(lineSc);
-				partidos.put(novo_partido.getNumero_partido(), novo_partido);
+				eleicao.addPartido(novo_partido.getNumero_partido(), novo_partido);
 				lineSc.close();
 			}
 			todoSc.close();
@@ -103,8 +102,6 @@ public class Leitor {
 			fe.printStackTrace();
 			System.exit(1);
 		}
-
-		return partidos;
 	}
 
 }

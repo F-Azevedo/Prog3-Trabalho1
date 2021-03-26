@@ -7,20 +7,21 @@ public class Testador {
 	
 	public static void main(String args[]) {
 
-		// Input data
-		String str_candidatos = "input/mycandidatos.csv",
-		       str_partido = "input/mypartidos.csv";
-		LocalDate data_eleicao = LocalDate.of(2020, 1, 29);
-
+		// Le os dados de entrada da linha de comando
+//		String arq_candidatos = args[3],
+//		       arq_partidos = args[4],
+//		       data = args[5];
+ 		String arq_candidatos = "input/mycandidatos.csv",
+		       arq_partidos = "input/mypartidos.csv",
+		       data = "29/01/2020";
+		// Cria scanner para ler as informações da data
+		LocalDate data_eleicao = Leitor.leData(data);
+		Eleicao eleicao = new Eleicao(data_eleicao);
 		// Cria os partidos
-		Map<Integer, Partido> partidos = Leitor.leTodosPartidos(str_partido);
+		Leitor.leTodosPartidos(arq_partidos, eleicao);
+		Leitor.leTodosCandidatos(arq_candidatos, data_eleicao, eleicao);
 
-		Leitor.leTodosCandidatos(str_candidatos, data_eleicao, partidos);
-		for (Integer key: partidos.keySet()){
-			Partido p = partidos.get(key);
-			System.out.println(p);
-			System.out.println("---------------------------------------------");
-		}
+		System.out.println(eleicao);
 	}
 
 }
