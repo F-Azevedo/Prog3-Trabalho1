@@ -13,7 +13,7 @@ public class Testador {
 //		       data = args[5];
  		String arq_candidatos = "input/capitais/vitória-candidatos.csv",
 		       arq_partidos = "input/capitais/vitória-partidos.csv",
-		       data = "29/01/2020";
+		       data = "15/11/2020";
 		// Cria scanner para ler as informações da data
 		LocalDate data_eleicao = Leitor.leData(data);
 		Eleicao eleicao = new Eleicao(data_eleicao);
@@ -24,6 +24,7 @@ public class Testador {
 		System.out.println(eleicao);
 		Estatisticas.imprimeNumVagas(eleicao);
 		Estatisticas.imprimeEleitos(eleicao);
+		Estatisticas.imprimeIdade(eleicao);
 		Estatisticas.imprimeSexo(eleicao);
 		Estatisticas.imprimeTotalVotos(eleicao);
 	}

@@ -33,6 +33,33 @@ public class Estatisticas {
         System.out.println();
     }
 
+    public static void imprimeIdade(Eleicao e){
+        int total = e.qtdEleitos();
+        int menor30 = 0, menor40 = 0, menor50 = 0, menor60 = 0, maior60 = 0;
+
+        for(Candidato i : e.getEleitos()){
+            int idade = i.getIdade();
+            if(idade < 30)
+                menor30++;
+            else if(idade < 40)
+                menor40++;
+            else if(idade < 50)
+                menor50++;
+            else if(idade < 60)
+                menor60++;
+            else
+                maior60++;
+        }
+
+        System.out.println(Cores.CYAN + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
+        System.out.printf("      Idade < 30: %d (%.2f%%)\n", menor30, ((float)menor30/(float)total)*100 );
+        System.out.printf("30 <= Idade < 40: %d (%.2f%%)\n", menor40, ((float)menor40/(float)total)*100 );
+        System.out.printf("40 <= Idade < 50: %d (%.2f%%)\n", menor50, ((float)menor50/(float)total)*100 );
+        System.out.printf("50 <= Idade < 60: %d (%.2f%%)\n", menor60, ((float)menor60/(float)total)*100 );
+        System.out.printf("60 <= Idade     : %d (%.2f%%)\n", maior60, ((float)maior60/(float)total)*100 );
+        System.out.println();
+    }
+
     public static void imprimeSexo(Eleicao e){
         int total = e.qtdEleitos();
         int fem = 0, masc = 0;
