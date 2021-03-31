@@ -6,9 +6,9 @@ import java.util.*;
 public class Eleicao {
     private int total_votos_nominais = 0;
     private int total_votos_legenda = 0;
-    private final Set<Candidato> eleitos = new HashSet<>();
+    private final TreeSet<Candidato> eleitos = new TreeSet<>();
     private final Map<Integer, Partido> partidos = new HashMap<>();
-    private final Set<Candidato> candidatos = new HashSet<>();
+    private final TreeSet<Candidato> candidatos = new TreeSet<>();
     private final LocalDate data;
 
     public Eleicao(LocalDate dia) {
@@ -27,13 +27,13 @@ public class Eleicao {
 
     public int get_total_votos_legenda(){ return total_votos_legenda; }
 
-    public Set<Candidato> getEleitos() {
+    public TreeSet<Candidato> getEleitos() {
         return eleitos;
     }
 
     public Map<Integer, Partido> getPartidos() { return partidos; }
 
-    public Set<Candidato> getCandidatos() { return candidatos; }
+    public TreeSet<Candidato> getCandidatos() { return candidatos; }
 
     public void adicionaEleito(Candidato candidato) {
         this.eleitos.add(candidato);

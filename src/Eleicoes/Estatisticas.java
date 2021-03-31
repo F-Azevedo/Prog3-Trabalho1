@@ -2,9 +2,7 @@ package Eleicoes;
 
 import javax.lang.model.type.NullType;
 import java.io.*;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.Math.round;
 
@@ -19,16 +17,12 @@ public class Estatisticas {
     // Imprime eleitos por ordem descrescenete de votos
     public static void imprimeEleitos(Eleicao e){
         System.out.println(Cores.GREEN + "Vereadores eleitos:" + Cores.RESET);
-        // Ordena os eleitos pelo número de votos
-        Set<Candidato> eleitos = e.getEleitos();
-        // Coverte o set para uma lista a fim de ordenar
-        List<Candidato> sorted_eleitos = new LinkedList<>(eleitos);
-        sorted_eleitos.sort(null); // Ordena eleitos pelo compareTo
-
+        // Pega os eleitos já ordenados decrescentemente pelos votos e
         // Imprime a lista ordenada
-        for (int i=0; i < sorted_eleitos.size(); i++){
-            Partido aux = e.getPartidos().get(sorted_eleitos.get(i).getNum_partido());
-            System.out.println((i+1) + " - " + sorted_eleitos.get(i).simpleString(aux.getSigla_partido()));
+        int i = 0;
+        for (Candidato eleito : e.getEleitos()){
+            Partido aux = e.getPartidos().get(eleito.getNum_partido());
+            System.out.println((++i) + " - " + eleito.simpleString(aux.getSigla_partido()));
         }
         System.out.println();
     }
@@ -85,5 +79,18 @@ public class Estatisticas {
         System.out.println(Cores.RED + "Total de votos válidos: \t" + Cores.RESET + total);
         System.out.printf("Total de votos nominais:\t%d (%.2f%%)\n", nominal, ((float)nominal/(float)total)*100);
         System.out.printf("Total de votos de Legenda:\t%d (%.2f%%)\n", legenda, ((float)legenda/(float)total)*100);
+    }
+
+    public static void imprimeMaisVotados(Eleicao e){
+        // Pega os candidatos ordenados de forma decrescente pelos seus votos
+        System.out.println(Cores.MAGENTA + "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" + Cores.RESET);// Em vez de ordenar irei tirar os n maiores da lista
+        // Imprime os candidatos mais votados
+        int i = 0;
+        for (Candidato maior: e.getCandidatos()){
+            Partido aux = e.getPartidos().get(maior.getNum_partido());
+            System.out.println((++i) + " - " + maior.simpleString(aux.getSigla_partido()));
+            if (i >= e.qtdEleitos()) break;
+        }
+        System.out.println();
     }
 }

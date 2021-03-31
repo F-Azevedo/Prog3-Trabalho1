@@ -21,9 +21,10 @@ public class Testador {
 		Leitor.leTodosPartidos(arq_partidos, eleicao);
 		Leitor.leTodosCandidatos(arq_candidatos, data_eleicao, eleicao);
 
-		System.out.println(eleicao);
+		//System.out.println(eleicao);
 		Estatisticas.imprimeNumVagas(eleicao);
 		Estatisticas.imprimeEleitos(eleicao);
+		Estatisticas.imprimeMaisVotados(eleicao);
 		Estatisticas.imprimeIdade(eleicao);
 		Estatisticas.imprimeSexo(eleicao);
 		Estatisticas.imprimeTotalVotos(eleicao);
