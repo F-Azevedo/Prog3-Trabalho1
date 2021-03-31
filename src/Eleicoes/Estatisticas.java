@@ -31,7 +31,23 @@ public class Estatisticas {
             System.out.println((i+1) + " - " + sorted_eleitos.get(i).simpleString(aux.getSigla_partido()));
         }
         System.out.println();
+    }
 
+    public static void imprimeSexo(Eleicao e){
+        int total = e.qtdEleitos();
+        int fem = 0, masc = 0;
+
+        for(Candidato i : e.getEleitos()){
+            if(i.getSexo() == 'F')
+                fem++;
+            else
+                masc++;
+        }
+
+        System.out.println(Cores.YELLOW + "Eleitos, por sexo:" + Cores.RESET);
+        System.out.printf("Feminino: \t%d (%.2f%%)\n", fem, ((float)fem/(float)total)*100 );
+        System.out.printf("Masculino:\t%d (%.2f%%)\n", masc, ((float)masc/(float)total*100) );
+        System.out.println();
     }
 
     public static void imprimeTotalVotos(Eleicao e){
