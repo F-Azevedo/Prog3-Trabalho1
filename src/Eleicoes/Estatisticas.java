@@ -9,76 +9,22 @@ import static java.lang.Math.round;
 // Classe responsável por gerar os relatórios
 public class Estatisticas {
 
-    public static void imprimeNumVagas(Eleicao e){
+    public static void imprimeNumVagas(Eleicao e) {
         System.out.println(Cores.BLUE + "Número de vagas: " + Cores.RESET +
-                           e.qtdEleitos() + "\n");
+                e.qtdEleitos() + "\n");
     }
 
     // Imprime eleitos por ordem descrescenete de votos
-    public static void imprimeEleitos(Eleicao e){
+    public static void imprimeEleitos(Eleicao e) {
         System.out.println(Cores.GREEN + "Vereadores eleitos:" + Cores.RESET);
         // Pega os eleitos já ordenados decrescentemente pelos votos e
         // Imprime a lista ordenada
         int i = 0;
-        for (Candidato eleito : e.getEleitos()){
+        for (Candidato eleito : e.getEleitos()) {
             Partido aux = e.getPartidos().get(eleito.getNum_partido());
             System.out.println((++i) + " - " + eleito.simpleString(aux.getSigla_partido()));
         }
         System.out.println();
-    }
-
-    public static void imprimeIdade(Eleicao e){
-        int total = e.qtdEleitos();
-        int menor30 = 0, menor40 = 0, menor50 = 0, menor60 = 0, maior60 = 0;
-
-        for(Candidato i : e.getEleitos()){
-            int idade = i.getIdade();
-            if(idade < 30)
-                menor30++;
-            else if(idade < 40)
-                menor40++;
-            else if(idade < 50)
-                menor50++;
-            else if(idade < 60)
-                menor60++;
-            else
-                maior60++;
-        }
-
-        System.out.println(Cores.CYAN + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
-        System.out.printf("      Idade < 30: %d (%.2f%%)\n", menor30, ((float)menor30/(float)total)*100 );
-        System.out.printf("30 <= Idade < 40: %d (%.2f%%)\n", menor40, ((float)menor40/(float)total)*100 );
-        System.out.printf("40 <= Idade < 50: %d (%.2f%%)\n", menor50, ((float)menor50/(float)total)*100 );
-        System.out.printf("50 <= Idade < 60: %d (%.2f%%)\n", menor60, ((float)menor60/(float)total)*100 );
-        System.out.printf("60 <= Idade     : %d (%.2f%%)\n", maior60, ((float)maior60/(float)total)*100 );
-        System.out.println();
-    }
-
-    public static void imprimeSexo(Eleicao e){
-        int total = e.qtdEleitos();
-        int fem = 0, masc = 0;
-
-        for(Candidato i : e.getEleitos()){
-            if(i.getSexo() == 'F')
-                fem++;
-            else
-                masc++;
-        }
-
-        System.out.println(Cores.YELLOW + "Eleitos, por sexo:" + Cores.RESET);
-        System.out.printf("Feminino: \t%d (%.2f%%)\n", fem, ((float)fem/(float)total)*100 );
-        System.out.printf("Masculino:\t%d (%.2f%%)\n", masc, ((float)masc/(float)total*100) );
-        System.out.println();
-    }
-
-    public static void imprimeTotalVotos(Eleicao e){
-        int legenda = e.get_total_votos_legenda();
-        int nominal = e.get_total_votos_nominais();
-        int total = legenda + nominal;
-
-        System.out.println(Cores.RED + "Total de votos válidos: \t" + Cores.RESET + total);
-        System.out.printf("Total de votos nominais:\t%d (%.2f%%)\n", nominal, ((float)nominal/(float)total)*100);
-        System.out.printf("Total de votos de Legenda:\t%d (%.2f%%)\n", legenda, ((float)legenda/(float)total)*100);
     }
 
     public static void imprimeMaisVotados(Eleicao e){
@@ -92,5 +38,74 @@ public class Estatisticas {
             if (i >= e.qtdEleitos()) break;
         }
         System.out.println();
+    }
+
+    public static void imprimePrejudicados(Eleicao e){
+        System.out.println(Cores.WHITE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos: " +
+                "(com sua posição no ranking de mais votados)" + Cores.RESET);
+       int pos = 1;
+       for(Candidato i : e.getCandidatos()){
+           if(!e.getEleitos().contains(i)){
+               Partido aux = e.getPartidos().get(i.getNum_partido());
+               System.out.println((pos) + " - " + i.simpleString(aux.getSigla_partido()));
+           }
+           pos++;
+           if(pos > e.qtdEleitos()) break;
+       }
+       System.out.println();
+    }
+
+    public static void imprimeIdade(Eleicao e) {
+        int total = e.qtdEleitos();
+        int menor30 = 0, menor40 = 0, menor50 = 0, menor60 = 0, maior60 = 0;
+
+        for (Candidato i : e.getEleitos()) {
+            int idade = i.getIdade();
+            if (idade < 30)
+                menor30++;
+            else if (idade < 40)
+                menor40++;
+            else if (idade < 50)
+                menor50++;
+            else if (idade < 60)
+                menor60++;
+            else
+                maior60++;
+        }
+
+        System.out.println(Cores.CYAN + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
+        System.out.printf("      Idade < 30: %d (%.2f%%)\n", menor30, ((float) menor30 / (float) total) * 100);
+        System.out.printf("30 <= Idade < 40: %d (%.2f%%)\n", menor40, ((float) menor40 / (float) total) * 100);
+        System.out.printf("40 <= Idade < 50: %d (%.2f%%)\n", menor50, ((float) menor50 / (float) total) * 100);
+        System.out.printf("50 <= Idade < 60: %d (%.2f%%)\n", menor60, ((float) menor60 / (float) total) * 100);
+        System.out.printf("60 <= Idade     : %d (%.2f%%)\n", maior60, ((float) maior60 / (float) total) * 100);
+        System.out.println();
+    }
+
+    public static void imprimeSexo(Eleicao e) {
+        int total = e.qtdEleitos();
+        int fem = 0, masc = 0;
+
+        for (Candidato i : e.getEleitos()) {
+            if (i.getSexo() == 'F')
+                fem++;
+            else
+                masc++;
+        }
+
+        System.out.println(Cores.YELLOW + "Eleitos, por sexo:" + Cores.RESET);
+        System.out.printf("Feminino: \t%d (%.2f%%)\n", fem, ((float) fem / (float) total) * 100);
+        System.out.printf("Masculino:\t%d (%.2f%%)\n", masc, ((float) masc / (float) total * 100));
+        System.out.println();
+    }
+
+    public static void imprimeTotalVotos(Eleicao e) {
+        int legenda = e.get_total_votos_legenda();
+        int nominal = e.get_total_votos_nominais();
+        int total = legenda + nominal;
+
+        System.out.println(Cores.RED + "Total de votos válidos: \t" + Cores.RESET + total);
+        System.out.printf("Total de votos nominais:\t%d (%.2f%%)\n", nominal, ((float) nominal / (float) total) * 100);
+        System.out.printf("Total de votos de Legenda:\t%d (%.2f%%)\n", legenda, ((float) legenda / (float) total) * 100);
     }
 }
