@@ -30,9 +30,10 @@ public class Candidato implements Comparable<Candidato>{
 	}
 
 	public boolean foiEleito() {
-		return this.status.equals("ELEITO");
+		return this.status.equals("Eleito");
 	}
 
+	// Getters
 	public String getNome() {
 		return nome;
 	}
@@ -69,7 +70,8 @@ public class Candidato implements Comparable<Candidato>{
 		return nasc;
 	}
 
-// Compara candidatos pelo número de votos nominais de forma decrescente
+	// Compara candidatos pelo número de votos nominais de forma decrescente
+	@Override
 	public int compareTo(Candidato outro) {
 		return Integer.compare(outro.votos, this.votos);
 	}
@@ -85,6 +87,11 @@ public class Candidato implements Comparable<Candidato>{
 	@Override
 	public int hashCode() {
 		return Objects.hash(numero);
+	}
+
+
+	public String simpleString() {
+		return nome + " / " + nome_urna + "  (" + "nome_partido" + ", " + votos + " votos)";
 	}
 
 	@Override

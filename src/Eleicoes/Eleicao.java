@@ -6,7 +6,7 @@ import java.util.*;
 public class Eleicao {
     private int total_votos_nominais = 0;
     private int total_votos_legenda = 0;
-    private final Set<Candidato> eleitos = new HashSet<>();
+    private Set<Candidato> eleitos = new HashSet<>();
     private Map<Integer, Partido> partidos = new HashMap<>();
     private Set<Candidato> candidatos = new HashSet<>();
     private LocalDate data;
@@ -43,13 +43,17 @@ public class Eleicao {
         this.partidos.get(candidato.getNum_partido()).add_Candidato(candidato);
     }
 
+    public int qtdEleitos(){
+        return eleitos.size();
+    }
+
     @Override
     public String toString() {
         return "Eleicao realizada em " + data + ":\n" +
                 "Total_votos_nominais=" + total_votos_nominais + "\n" +
                 "Total_votos_legenda=" + total_votos_legenda + "\n" +
-                "Eleitos=\n" + eleitos.size() +
-                "Partidos=\n" + partidos +
-                "Candidatos=\n" + candidatos.size() + "\n\n";
+                "Eleitos= " + eleitos.size() +
+                "Partidos=\n" + partidos + "\n" +
+                "Candidatos= " + candidatos.size() + "\n\n";
     }
 }
