@@ -40,7 +40,7 @@ public class Estatisticas {
         int total = legenda + nominal;
 
         System.out.println(Cores.RED + "Total de votos válidos: \t" + Cores.RESET + total);
-        System.out.println(String.format("Total de votos nominais:\t%d (%.2f%%)", nominal, ((float)nominal/(float)total)*100) );
-        System.out.println(String.format("Total de votos de Legenda:\t%d (%.2f%%)", legenda, ((float)legenda/(float)total)*100) );
+        System.out.printf("Total de votos nominais:\t%d (%.2f%%)\n", nominal, ((float)nominal/(float)total)*100);
+        System.out.printf("Total de votos de Legenda:\t%d (%.2f%%)\n", legenda, ((float)legenda/(float)total)*100);
     }
 }
