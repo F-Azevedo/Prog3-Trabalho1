@@ -26,6 +26,7 @@ public class Leitor {
 	}
 	
 	public static Candidato leCandidato(Scanner scan, LocalDate dia_eleicao) {
+		//Lê as informações do candidato.
 		int numero = scan.nextInt(), 
 			votos = scan.nextInt();
 		String situacao = scan.next(),
@@ -35,9 +36,10 @@ public class Leitor {
 		LocalDate nascimento = leData(scan.next());
 		scan.next(); // Pega o destino do voto que não é armazenado
 		int num_partido = scan.nextInt();
+
+		//Cria um novo candidato e o retorna.
 		return new Candidato(numero, votos, situacao, nome_candidato, nome_urna,
 				            sexo, nascimento, num_partido, dia_eleicao);
-		
 	}
 	
 	public static void leTodosCandidatos(String nome_arq_entrada, LocalDate dia_eleicao, Eleicao eleicao) {
@@ -53,9 +55,10 @@ public class Leitor {
 				// Define as configurações do scanner do candidato, linha do arquivo.
 				Scanner lineSc = new Scanner(line);
 				lineSc.useDelimiter(",");
-				// Le candidato o novo candidato e o adiciona à eleicao
+				// Lê um novo candidato.
 				Candidato novo_candidato = leCandidato(lineSc, dia_eleicao);
-				eleicao.addCandidato(novo_candidato);
+				//Adiciona o candidato à eleição.
+				eleicao.addCandidatoEleicao(novo_candidato);
 
 				lineSc.close();
 			}
@@ -73,6 +76,7 @@ public class Leitor {
 	// ------------------------------------
 	// Le apenas um partido
 	public static Partido lePartido(Scanner linhaScan){
+		//Lê as informações, cria e retorna um partido.
 		return new Partido(linhaScan.nextInt(), linhaScan.nextInt(),
 				           linhaScan.next(), linhaScan.next());
 	}
@@ -90,9 +94,10 @@ public class Leitor {
 				// Define as configurações do scanner do partido, linha do arquivo.
 				Scanner lineSc = new Scanner(line);
 				lineSc.useDelimiter(",");
-				// Le partido e adiciona ele à eleição.
+				// Lê um novo partido.
 				Partido novo_partido = lePartido(lineSc);
-				eleicao.addPartido(novo_partido.getNumero_partido(), novo_partido);
+				//Adicona o partido ao conjunto de partidos.
+				eleicao.addPartidoEleicao(novo_partido.getNumero_partido(), novo_partido);
 				lineSc.close();
 			}
 			todoSc.close();

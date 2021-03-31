@@ -90,8 +90,8 @@ public class Candidato implements Comparable<Candidato>{
 	}
 
 
-	public String simpleString() {
-		return nome + " / " + nome_urna + "  (" + "nome_partido" + ", " + votos + " votos)";
+	public String simpleString(String nome_partido) {
+		return nome + " / " + nome_urna + " (" + nome_partido + ", " + votos + " votos)";
 	}
 
 	@Override

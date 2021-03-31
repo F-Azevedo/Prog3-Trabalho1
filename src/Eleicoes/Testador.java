@@ -5,14 +5,14 @@ import java.util.*;
 
 public class Testador {
 	
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		// Le os dados de entrada da linha de comando
 //		String arq_candidatos = args[3],
 //		       arq_partidos = args[4],
 //		       data = args[5];
- 		String arq_candidatos = "input/capitais/aracaju-candidatos.csv",
-		       arq_partidos = "input/capitais/aracaju-partidos.csv",
+ 		String arq_candidatos = "input/capitais/vitória-candidatos.csv",
+		       arq_partidos = "input/capitais/vitória-partidos.csv",
 		       data = "29/01/2020";
 		// Cria scanner para ler as informações da data
 		LocalDate data_eleicao = Leitor.leData(data);

@@ -25,7 +25,8 @@ public class Estatisticas {
 
         // Imprime a lista ordenada
         for (int i=0; i < sorted_eleitos.size(); i++){
-            System.out.println((i+1) + " - " + sorted_eleitos.get(i).simpleString());
+            Partido aux = e.getPartidos().get(sorted_eleitos.get(i).getNum_partido());
+            System.out.println((i+1) + " - " + sorted_eleitos.get(i).simpleString(aux.getSigla_partido()));
         }
         System.out.println();
 

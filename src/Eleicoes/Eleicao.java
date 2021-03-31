@@ -6,10 +6,10 @@ import java.util.*;
 public class Eleicao {
     private int total_votos_nominais = 0;
     private int total_votos_legenda = 0;
-    private Set<Candidato> eleitos = new HashSet<>();
-    private Map<Integer, Partido> partidos = new HashMap<>();
-    private Set<Candidato> candidatos = new HashSet<>();
-    private LocalDate data;
+    private final Set<Candidato> eleitos = new HashSet<>();
+    private final Map<Integer, Partido> partidos = new HashMap<>();
+    private final Set<Candidato> candidatos = new HashSet<>();
+    private final LocalDate data;
 
     public Eleicao(LocalDate dia) {
         this.data = dia;
@@ -35,12 +35,28 @@ public class Eleicao {
         this.eleitos.add(candidato);
     }
 
-    public void addPartido(Integer num_partido, Partido partido) { this.partidos.put(num_partido, partido); }
+    public void addPartidoEleicao(Integer num_partido, Partido partido) {
+        //Adiciona o partido ao conjunto de partidos.
+        this.partidos.put(num_partido, partido);
 
-    public void addCandidato(Candidato candidato) {
+        //Adicoina os votos de legenda recebidos pelo partido ao total de votos de legenda da eleição.
+        this.add_total_votos_legenda(partido.getVotos_legenda());
+    }
+
+    public void addCandidatoEleicao(Candidato candidato) {
+        //Adiciona o candidato ao set de candidatos da eleição.
         this.candidatos.add(candidato);
-        if (candidato.foiEleito()) this.eleitos.add(candidato);
-        this.partidos.get(candidato.getNum_partido()).add_Candidato(candidato);
+
+        //Se o candidato foi eleito, adiciona o candidato ao set de eleitos.
+        if (candidato.foiEleito()) adicionaEleito(candidato);
+
+        //Adiciona os votos que o candidato recebeu ao total de votos nominais da eleição.
+        this.add_total_votos_nominais(candidato.getVotos());
+
+        //Determina a qual partido o candidato pertence.
+        Partido aux = this.partidos.get(candidato.getNum_partido());
+        //Adiciona o candidato ao seu respectivo partido.
+        aux.add_CandidatoPartido(candidato);
     }
 
     public int qtdEleitos(){
@@ -50,10 +66,10 @@ public class Eleicao {
     @Override
     public String toString() {
         return "Eleicao realizada em " + data + ":\n" +
-                "Total_votos_nominais=" + total_votos_nominais + "\n" +
-                "Total_votos_legenda=" + total_votos_legenda + "\n" +
-                "Eleitos= " + eleitos.size() +
-                "Partidos=\n" + partidos + "\n" +
-                "Candidatos= " + candidatos.size() + "\n\n";
+                "Total_votos_nominais = " + total_votos_nominais + "\n" +
+                "Total_votos_legenda = " + total_votos_legenda + "\n" +
+                "Eleitos = " + eleitos.size() + "\n" +
+                "Partidos =\n" + partidos + "\n" +
+                "Candidatos = " + candidatos.size() + "\n\n";
     }
 }
