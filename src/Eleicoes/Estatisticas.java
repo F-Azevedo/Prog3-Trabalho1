@@ -10,7 +10,7 @@ import static java.lang.Math.round;
 public class Estatisticas {
 
     public static void imprimeNumVagas(Eleicao e) {
-        System.out.println(Cores.BLUE + "Número de vagas: " + Cores.RESET +
+        System.out.println(Cores.RED + "Número de vagas: " + Cores.RESET +
                 e.qtdEleitos() + "\n");
     }
 
@@ -29,7 +29,7 @@ public class Estatisticas {
 
     public static void imprimeMaisVotados(Eleicao e){
         // Pega os candidatos ordenados de forma decrescente pelos seus votos
-        System.out.println(Cores.MAGENTA + "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" + Cores.RESET);// Em vez de ordenar irei tirar os n maiores da lista
+        System.out.println(Cores.YELLOW + "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" + Cores.RESET);// Em vez de ordenar irei tirar os n maiores da lista
         // Imprime os candidatos mais votados
         int i = 0;
         for (Candidato maior: e.getCandidatos()){
@@ -41,7 +41,7 @@ public class Estatisticas {
     }
 
     public static void imprimePrejudicados(Eleicao e){
-        System.out.println(Cores.WHITE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos: " +
+        System.out.println(Cores.BLUE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos: " +
                 "(com sua posição no ranking de mais votados)" + Cores.RESET);
        int pos = 1;
        for(Candidato i : e.getCandidatos()){
@@ -53,6 +53,26 @@ public class Estatisticas {
            if(pos > e.qtdEleitos()) break;
        }
        System.out.println();
+    }
+
+    public static void imprimeBeneficiados(Eleicao e){
+        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema porporcional" + Cores.RESET);
+        int totalEleitos = e.qtdEleitos();
+        int qtdEleitos = 0, pos = 0;
+
+        for(Candidato i : e.getCandidatos()){
+            pos++;
+            if(e.getEleitos().contains(i)){
+                qtdEleitos++;
+                if(pos > totalEleitos){
+                    Partido aux = e.getPartidos().get(i.getNum_partido());
+                    System.out.println((pos) + " - " + i.simpleString(aux.getSigla_partido()));
+                }
+            }
+            if(qtdEleitos == totalEleitos)  break;
+        }
+
+        System.out.println();
     }
 
     public static void imprimeIdade(Eleicao e) {

@@ -26,6 +26,7 @@ public class Testador {
 		Estatisticas.imprimeEleitos(eleicao);
 		Estatisticas.imprimeMaisVotados(eleicao);
 		Estatisticas.imprimePrejudicados(eleicao);
+		Estatisticas.imprimeBeneficiados(eleicao);
 		Estatisticas.imprimeIdade(eleicao);
 		Estatisticas.imprimeSexo(eleicao);
 		Estatisticas.imprimeTotalVotos(eleicao);
