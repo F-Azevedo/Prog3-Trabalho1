@@ -24,6 +24,7 @@ public class Testador {
 		System.out.println(eleicao);
 		Estatisticas.imprimeNumVagas(eleicao);
 		Estatisticas.imprimeEleitos(eleicao);
+		Estatisticas.imprimeTotalVotos(eleicao);
 	}
 
 }

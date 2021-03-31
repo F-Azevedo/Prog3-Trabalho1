@@ -19,9 +19,13 @@ public class Eleicao {
         this.total_votos_nominais += incremento;
     }
 
+    public int get_total_votos_nominais(){ return total_votos_nominais; }
+
     public void add_total_votos_legenda(int incremento) {
         this.total_votos_legenda += incremento;
     }
+
+    public int get_total_votos_legenda(){ return total_votos_legenda; }
 
     public Set<Candidato> getEleitos() {
         return eleitos;

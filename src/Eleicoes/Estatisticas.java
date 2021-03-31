@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import static java.lang.Math.round;
+
 // Classe responsável por gerar os relatórios
 public class Estatisticas {
 
@@ -32,4 +34,13 @@ public class Estatisticas {
 
     }
 
+    public static void imprimeTotalVotos(Eleicao e){
+        int legenda = e.get_total_votos_legenda();
+        int nominal = e.get_total_votos_nominais();
+        int total = legenda + nominal;
+
+        System.out.println(Cores.RED + "Total de votos válidos: \t" + Cores.RESET + total);
+        System.out.println(String.format("Total de votos nominais:\t%d (%.2f%%)", nominal, ((float)nominal/(float)total)*100) );
+        System.out.println(String.format("Total de votos de Legenda:\t%d (%.2f%%)", legenda, ((float)legenda/(float)total)*100) );
+    }
 }
