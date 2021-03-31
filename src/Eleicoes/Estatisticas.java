@@ -56,7 +56,7 @@ public class Estatisticas {
     }
 
     public static void imprimeBeneficiados(Eleicao e){
-        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema porporcional" + Cores.RESET);
+        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema porporcional:" + Cores.RESET);
         int totalEleitos = e.qtdEleitos();
         int qtdEleitos = 0, pos = 0;
 
@@ -71,7 +71,16 @@ public class Estatisticas {
             }
             if(qtdEleitos == totalEleitos)  break;
         }
+        System.out.println();
+    }
 
+    public static void imprimePartidosMaisVotados(Eleicao e){
+        System.out.println(Cores.CYAN + "Votação dos partidos e número de candidatos eleitos:" + Cores.RESET);
+        System.out.println();
+    }
+
+    public static void imprimeMelhorPiorCandidatoPorPartido(Eleicao e){
+        System.out.println(Cores.WHITE + "Primeiro e último colocados de cada partido:" + Cores.RESET);
         System.out.println();
     }
 
@@ -93,7 +102,7 @@ public class Estatisticas {
                 maior60++;
         }
 
-        System.out.println(Cores.CYAN + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
+        System.out.println(Cores.RED + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
         System.out.printf("      Idade < 30: %d (%.2f%%)\n", menor30, ((float) menor30 / (float) total) * 100);
         System.out.printf("30 <= Idade < 40: %d (%.2f%%)\n", menor40, ((float) menor40 / (float) total) * 100);
         System.out.printf("40 <= Idade < 50: %d (%.2f%%)\n", menor50, ((float) menor50 / (float) total) * 100);
@@ -113,7 +122,7 @@ public class Estatisticas {
                 masc++;
         }
 
-        System.out.println(Cores.YELLOW + "Eleitos, por sexo:" + Cores.RESET);
+        System.out.println(Cores.GREEN + "Eleitos, por sexo:" + Cores.RESET);
         System.out.printf("Feminino: \t%d (%.2f%%)\n", fem, ((float) fem / (float) total) * 100);
         System.out.printf("Masculino:\t%d (%.2f%%)\n", masc, ((float) masc / (float) total * 100));
         System.out.println();
@@ -124,7 +133,7 @@ public class Estatisticas {
         int nominal = e.get_total_votos_nominais();
         int total = legenda + nominal;
 
-        System.out.println(Cores.RED + "Total de votos válidos: \t" + Cores.RESET + total);
+        System.out.println(Cores.YELLOW + "Total de votos válidos: \t" + Cores.RESET + total);
         System.out.printf("Total de votos nominais:\t%d (%.2f%%)\n", nominal, ((float) nominal / (float) total) * 100);
         System.out.printf("Total de votos de Legenda:\t%d (%.2f%%)\n", legenda, ((float) legenda / (float) total) * 100);
     }
