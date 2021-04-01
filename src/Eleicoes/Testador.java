@@ -8,12 +8,20 @@ public class Testador {
 	public static void main(String[] args) {
 
 		// Le os dados de entrada da linha de comando
-//		String arq_candidatos = args[3],
-//		       arq_partidos = args[4],
-//		       data = args[5];
- 		String arq_candidatos = "input/capitais/vitória-candidatos.csv",
-		       arq_partidos = "input/capitais/vitória-partidos.csv",
-		       data = "15/11/2020";
+		/*
+			 _____ _
+			/ ____| |
+			| |    | |__   ___  ___ __ _ _ __
+			| |    | '_ \ / _ \/ __/ _` | '__|
+			| |____| | | |  __| (_| (_| | |
+			\_____|_| |_|\___|\___\__,_|_|
+		*/
+		String arq_candidatos = args[0],
+		       arq_partidos = args[1],
+		       data = args[2];
+// 		String arq_candidatos = "input/capitais/vitória-candidatos.csv",
+//		       arq_partidos = "input/capitais/vitória-partidos.csv",
+//		       data = "15/11/2020";
 		// Cria scanner para ler as informações da data
 		LocalDate data_eleicao = Leitor.leData(data);
 		Eleicao eleicao = new Eleicao(data_eleicao);
