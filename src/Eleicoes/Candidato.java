@@ -94,8 +94,14 @@ public class Candidato implements Comparable<Candidato>{
 		return nome + " / " + nome_urna + " (" + nome_partido + ", " + votos + " votos)";
 	}
 
+	// Imprime o candidato de forma mais simplória
 	@Override
 	public String toString() {
+		return nome_urna + " (" + numero + ", " + votos + " votos)";
+	}
+
+	// Método que imprime todas as informações do candidato
+	public String detailedString(){
 		String space ="           ";
 		return "Candidato: nome= " + nome + ",\n" +
 				space + "nome_urna= " + nome_urna + ",\n" +

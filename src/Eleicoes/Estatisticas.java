@@ -9,11 +9,13 @@ import static java.lang.Math.round;
 // Classe responsável por gerar os relatórios
 public class Estatisticas {
 
+    // Relatório 1
     public static void imprimeNumVagas(Eleicao e) {
         System.out.println(Cores.RED + "Número de vagas: " + Cores.RESET +
                 e.qtdEleitos() + "\n");
     }
 
+    // Relatório 2
     // Imprime eleitos por ordem descrescenete de votos
     public static void imprimeEleitos(Eleicao e) {
         System.out.println(Cores.GREEN + "Vereadores eleitos:" + Cores.RESET);
@@ -27,6 +29,7 @@ public class Estatisticas {
         System.out.println();
     }
 
+    // Relatório 3
     public static void imprimeMaisVotados(Eleicao e){
         // Pega os candidatos ordenados de forma decrescente pelos seus votos
         System.out.println(Cores.YELLOW + "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" + Cores.RESET);// Em vez de ordenar irei tirar os n maiores da lista
@@ -40,6 +43,7 @@ public class Estatisticas {
         System.out.println();
     }
 
+    // Relatório 4
     public static void imprimePrejudicados(Eleicao e){
         System.out.println(Cores.BLUE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos: " +
                 "(com sua posição no ranking de mais votados)" + Cores.RESET);
@@ -55,6 +59,7 @@ public class Estatisticas {
        System.out.println();
     }
 
+    // Relatório 5
     public static void imprimeBeneficiados(Eleicao e){
         System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema porporcional:" + Cores.RESET);
         int totalEleitos = e.qtdEleitos();
@@ -74,32 +79,48 @@ public class Estatisticas {
         System.out.println();
     }
 
+    // Relatório 6
     public static void imprimePartidosMaisVotados(Eleicao e){
         System.out.println(Cores.CYAN + "Votação dos partidos e número de candidatos eleitos:" + Cores.RESET);
+        // Cria uma lista a partir dos partidos
+        List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
+        // Ordena a lista de partidos a partir do numero de votos totais de forma decrescente
+        partidos.sort(null);
+        // Imprime os partidos
+        int i = 0;
+        for(Partido p : partidos){
+            System.out.println(++i + " - " + p.simplesString());
+        }
         System.out.println();
     }
 
+    // Relatório 7
     public static void imprimeMelhorPiorCandidatoPorPartido(Eleicao e){
         System.out.println(Cores.WHITE + "Primeiro e último colocados de cada partido:" + Cores.RESET);
+        // Cria uma lista a partir dos partidos
+        List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
+        // Ordena a lista de partidos a partir do numero de votos do candidato com mais votos de forma decrescente
+        partidos.sort(new comparaMaisVotado());
+        int i=0;
+        for(Partido p: partidos){
+            if (p.getCandidatos().size() == 0 || p.votosTotais() <= 0) continue;
+            System.out.println(++i + " - " + p + ", " + p.getCandidatos().first() + " / " + p.getCandidatos().last());
+        }
         System.out.println();
     }
 
+    // Relatório 8
     public static void imprimeIdade(Eleicao e) {
         int total = e.qtdEleitos();
         int menor30 = 0, menor40 = 0, menor50 = 0, menor60 = 0, maior60 = 0;
 
         for (Candidato i : e.getEleitos()) {
             int idade = i.getIdade();
-            if (idade < 30)
-                menor30++;
-            else if (idade < 40)
-                menor40++;
-            else if (idade < 50)
-                menor50++;
-            else if (idade < 60)
-                menor60++;
-            else
-                maior60++;
+            if (idade < 30) menor30++;
+            else if (idade < 40) menor40++;
+            else if (idade < 50) menor50++;
+            else if (idade < 60) menor60++;
+            else maior60++;
         }
 
         System.out.println(Cores.RED + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
@@ -111,6 +132,7 @@ public class Estatisticas {
         System.out.println();
     }
 
+    // Relatório 9
     public static void imprimeSexo(Eleicao e) {
         int total = e.qtdEleitos();
         int fem = 0, masc = 0;
@@ -128,6 +150,7 @@ public class Estatisticas {
         System.out.println();
     }
 
+    // Relatório 10
     public static void imprimeTotalVotos(Eleicao e) {
         int legenda = e.get_total_votos_legenda();
         int nominal = e.get_total_votos_nominais();
