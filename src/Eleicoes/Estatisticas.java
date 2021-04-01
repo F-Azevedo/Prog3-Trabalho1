@@ -96,7 +96,7 @@ public class Estatisticas {
 
     // Relatório 7
     public static void imprimeMelhorPiorCandidatoPorPartido(Eleicao e){
-        System.out.println(Cores.WHITE + "Primeiro e último colocados de cada partido:" + Cores.RESET);
+        System.out.println(Cores.CYAN + "Primeiro e último colocados de cada partido:" + Cores.RESET);
         // Cria uma lista a partir dos partidos
         List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
         // Ordena a lista de partidos a partir do numero de votos do candidato com mais votos de forma decrescente
