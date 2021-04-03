@@ -6,22 +6,32 @@ import java.util.*;
 
 import static java.lang.Math.round;
 
-// Classe responsável por gerar os relatórios
+/**
+ * Classe responsável pelos relatórios.
+ */
 public class Estatisticas {
 
-    // Relatório 1
+    /**
+     * Relatório 1.
+     * Imprime o número de vaga de vereadores.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeNumVagas(Eleicao e) {
-        System.out.println(Cores.RED + "Número de vagas: " + Cores.RESET +
-                e.qtdEleitos() + "\n");
+        System.out.println(Cores.RED + "Número de vagas: " + Cores.RESET + e.qtdEleitos() + "\n");
     }
 
-    // Relatório 2
-    // Imprime eleitos por ordem descrescenete de votos
+    /**
+     * Relatório 2.
+     * Imprime os vereadores eleitos.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeEleitos(Eleicao e) {
-        System.out.println(Cores.GREEN + "Vereadores eleitos:" + Cores.RESET);
-        // Pega os eleitos já ordenados decrescentemente pelos votos e
-        // Imprime a lista ordenada
         int i = 0;
+
+        System.out.println(Cores.GREEN + "Vereadores eleitos:" + Cores.RESET);
+
+        // Vereadores eleitos já foram armazenados ordenadamente pelos mais votados de maneira decrescente.
+
         for (Candidato eleito : e.getEleitos()) {
             Partido aux = e.getPartidos().get(eleito.getNum_partido());
             System.out.println((++i) + " - " + eleito.simpleString(aux.getSigla_partido()));
@@ -29,12 +39,19 @@ public class Estatisticas {
         System.out.println();
     }
 
-    // Relatório 3
+    /**
+     * Relatório 3.
+     * Imprime os N candidatos com mais votos.
+     * N sendo o número de candidatos que foram eleitos.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeMaisVotados(Eleicao e){
-        // Pega os candidatos ordenados de forma decrescente pelos seus votos
-        System.out.println(Cores.YELLOW + "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" + Cores.RESET);// Em vez de ordenar irei tirar os n maiores da lista
-        // Imprime os candidatos mais votados
         int i = 0;
+
+        System.out.println(Cores.YELLOW + "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" + Cores.RESET);// Em vez de ordenar irei tirar os n maiores da lista
+
+        // Candidatos já foram armazenados ordenadamente pelo número de votos de maneira decrescente.
+
         for (Candidato maior: e.getCandidatos()){
             Partido aux = e.getPartidos().get(maior.getNum_partido());
             System.out.println((++i) + " - " + maior.simpleString(aux.getSigla_partido()));
@@ -43,12 +60,21 @@ public class Estatisticas {
         System.out.println();
     }
 
-    // Relatório 4
+    /**
+     * Relatório 4.
+     * Imprime os candidatos que foram prejudicados pela votação proporcional.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimePrejudicados(Eleicao e){
+        int pos = 1;
+
         System.out.println(Cores.BLUE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos: " +
                 "(com sua posição no ranking de mais votados)" + Cores.RESET);
-       int pos = 1;
-       for(Candidato i : e.getCandidatos()){
+
+        // Percorre os candidatos da eleição até o número de candidatos que foi eleito.
+        // Se o candidato não estiver dentro da lista dos que foram eleitos, como a lista de candidatos
+        // esta ordenada de maneira decrescente por votos, podemos afirmar que ele foi prejudicado pela votação.
+        for(Candidato i : e.getCandidatos()){
            if(!e.getEleitos().contains(i)){
                Partido aux = e.getPartidos().get(i.getNum_partido());
                System.out.println((pos) + " - " + i.simpleString(aux.getSigla_partido()));
@@ -59,12 +85,19 @@ public class Estatisticas {
        System.out.println();
     }
 
-    // Relatório 5
+    /**
+     * Relatório 5.
+     * Imprime os candidatos que foram beneficiados pela votação proporcional.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeBeneficiados(Eleicao e){
-        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema porporcional:" + Cores.RESET);
         int totalEleitos = e.qtdEleitos();
         int qtdEleitos = 0, pos = 0;
 
+        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema porporcional:" + Cores.RESET);
+
+        // Percorre a os candidatos da eleição, se o candidato possuir menos votos que os N candidatos que
+        // foram eleitos, e ainda não tiver passado por todos os eleitos, podemos afirmar que ele foi beneficiado pela votação.
         for(Candidato i : e.getCandidatos()){
             pos++;
             if(e.getEleitos().contains(i)){
@@ -79,29 +112,45 @@ public class Estatisticas {
         System.out.println();
     }
 
-    // Relatório 6
+    /**
+     * Relatório 6.
+     * Imprime os partidos, ordenado pelo numero de votos de forma decrescente.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimePartidosMaisVotados(Eleicao e){
-        System.out.println(Cores.CYAN + "Votação dos partidos e número de candidatos eleitos:" + Cores.RESET);
-        // Cria uma lista a partir dos partidos
-        List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
-        // Ordena a lista de partidos a partir do numero de votos totais de forma decrescente
-        partidos.sort(null);
-        // Imprime os partidos
         int i = 0;
+
+        System.out.println(Cores.CYAN + "Votação dos partidos e número de candidatos eleitos:" + Cores.RESET);
+
+        // Cria uma cópia dos partidos em forma de lista, para que seja possível efetuar a ordenação.
+        List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
+
+        // Ordena a lista a partir do numero de votos totais do partido de forma decrescente.
+        partidos.sort(null);
+
         for(Partido p : partidos){
             System.out.println(++i + " - " + p.simplesString());
         }
         System.out.println();
     }
 
-    // Relatório 7
+    /**
+     * Relatório 7.
+     * Imprime o candidato mais votado e o menos votado de cada partido.
+     * Partidos ordenados pelo candidato mais votado de forma decrescente.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeMelhorPiorCandidatoPorPartido(Eleicao e){
-        System.out.println(Cores.BLUE + "Primeiro e último colocados de cada partido:" + Cores.RESET);
-        // Cria uma lista a partir dos partidos
-        List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
-        // Ordena a lista de partidos a partir do numero de votos do candidato com mais votos de forma decrescente
-        partidos.sort(new comparaMaisVotado());
         int i=0;
+
+        System.out.println(Cores.BLUE + "Primeiro e último colocados de cada partido:" + Cores.RESET);
+
+        // Cria uma cópia dos partidos em forma de lista, para que seja possível efetuar a ordenação.
+        List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
+
+        // Ordena a lista de partidos a partir do numero de votos do candidato com mais votos de forma decrescente.
+        partidos.sort(new comparaMaisVotado());
+
         for(Partido p: partidos){
             if (p.getCandidatos().size() == 0 || p.votosTotais() <= 0) continue;
             System.out.println(++i + " - " + p + ", " + p.getCandidatos().first() + " / " + p.getCandidatos().last());
@@ -109,7 +158,11 @@ public class Estatisticas {
         System.out.println();
     }
 
-    // Relatório 8
+    /**
+     * Relatório 8.
+     * Imprime a quantidade de candidatos eleitos em determinadas faixas etárias, e a porcentagem.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeIdade(Eleicao e) {
         int total = e.qtdEleitos();
         int menor30 = 0, menor40 = 0, menor50 = 0, menor60 = 0, maior60 = 0;
@@ -132,7 +185,11 @@ public class Estatisticas {
         System.out.println();
     }
 
-    // Relatório 9
+    /**
+     * Relatório 9.
+     * Imprime a porcentagem de candidatos eleitos que são homem e mulheres.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeSexo(Eleicao e) {
         int total = e.qtdEleitos();
         int fem = 0, masc = 0;
@@ -150,7 +207,11 @@ public class Estatisticas {
         System.out.println();
     }
 
-    // Relatório 10
+    /**
+     * Relatório 10.
+     * Imprime a quantidade total de votos válidos, quantidade de votos em candidatos e quantidade de votos de legenda.
+     * @param e estrutura da classe eleição.
+     */
     public static void imprimeTotalVotos(Eleicao e) {
         int legenda = e.get_total_votos_legenda();
         int nominal = e.get_total_votos_nominais();

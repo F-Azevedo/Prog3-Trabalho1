@@ -19,8 +19,8 @@ public class Testador {
 		String arq_candidatos = args[0],
 		       arq_partidos = args[1],
 		       data = args[2];
-// 		String arq_candidatos = "input/capitais/vitória-candidatos.csv",
-//		       arq_partidos = "input/capitais/vitória-partidos.csv",
+// 		String arq_candidatos = "./input/ES/vitoria/candidatos.csv",
+//		       arq_partidos = "./input/ES/vitoria/partidos.csv",
 //		       data = "15/11/2020";
 		// Cria scanner para ler as informações da data
 		LocalDate data_eleicao = Leitor.leData(data);
