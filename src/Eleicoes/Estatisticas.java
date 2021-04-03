@@ -68,7 +68,7 @@ public class Estatisticas {
     public static void imprimePrejudicados(Eleicao e){
         int pos = 1;
 
-        System.out.println(Cores.BLUE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos: " +
+        System.out.println(Cores.BLUE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos:\n" +
                 "(com sua posição no ranking de mais votados)" + Cores.RESET);
 
         // Percorre os candidatos da eleição até o número de candidatos que foi eleito.
@@ -94,7 +94,8 @@ public class Estatisticas {
         int totalEleitos = e.qtdEleitos();
         int qtdEleitos = 0, pos = 0;
 
-        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema porporcional:" + Cores.RESET);
+        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema proporcional:\n" +
+                "(com sua posição no ranking de mais votados)" + Cores.RESET);
 
         // Percorre a os candidatos da eleição, se o candidato possuir menos votos que os N candidatos que
         // foram eleitos, e ainda não tiver passado por todos os eleitos, podemos afirmar que ele foi beneficiado pela votação.
@@ -177,11 +178,11 @@ public class Estatisticas {
         }
 
         System.out.println(Cores.RED + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
-        System.out.printf("      Idade < 30: %d (%.2f%%)\n", menor30, ((float) menor30 / (float) total) * 100);
+        System.out.printf("\t  Idade < 30: %d (%.2f%%)\n", menor30, ((float) menor30 / (float) total) * 100);
         System.out.printf("30 <= Idade < 40: %d (%.2f%%)\n", menor40, ((float) menor40 / (float) total) * 100);
         System.out.printf("40 <= Idade < 50: %d (%.2f%%)\n", menor50, ((float) menor50 / (float) total) * 100);
         System.out.printf("50 <= Idade < 60: %d (%.2f%%)\n", menor60, ((float) menor60 / (float) total) * 100);
-        System.out.printf("60 <= Idade     : %d (%.2f%%)\n", maior60, ((float) maior60 / (float) total) * 100);
+        System.out.printf("60 <= Idade\t\t: %d (%.2f%%)\n", maior60, ((float) maior60 / (float) total) * 100);
         System.out.println();
     }
 
@@ -202,7 +203,7 @@ public class Estatisticas {
         }
 
         System.out.println(Cores.GREEN + "Eleitos, por sexo:" + Cores.RESET);
-        System.out.printf("Feminino: \t%d (%.2f%%)\n", fem, ((float) fem / (float) total) * 100);
+        System.out.printf("Feminino:\t%d (%.2f%%)\n", fem, ((float) fem / (float) total) * 100);
         System.out.printf("Masculino:\t%d (%.2f%%)\n", masc, ((float) masc / (float) total * 100));
         System.out.println();
     }

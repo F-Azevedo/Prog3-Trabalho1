@@ -63,14 +63,28 @@ public class Partido implements Comparable<Partido>{
     // Meio mais simples de imprimir o partido
     @Override
     public String toString() {
-        return sigla_partido + ", " + numero_partido;
+        return sigla_partido + " - " + numero_partido;
     }
 
     // Outro meio de imprimir algumas informações do partido
     public String simplesString(){
-        return sigla_partido + " - " + numero_partido + ", " +
-               this.votosTotais() + " votos (" + votos_nominais + " nominais e " +
-               votos_legenda + " de legenda), " + qtdCandidatosEleitos + " candidatos eleitos";
+        String s = sigla_partido + " - " + numero_partido + ", " + votosTotais();
+        if(votosTotais() == 0)
+            s += " voto (" + votos_nominais;
+        else
+            s += " votos (" + votos_nominais;
+
+        if(votos_nominais == 0)
+            s += " nominal e " + votos_legenda + " de legenda), " + qtdCandidatosEleitos;
+        else
+            s += " nominais e " + votos_legenda + " de legenda), " + qtdCandidatosEleitos;
+
+        if(qtdCandidatosEleitos < 2)
+            s += " candidato eleito";
+        else
+            s += " candidatos eleitos";
+
+        return s;
     }
 
     // Imprime todas as informações do partido incluindo cada candidato
