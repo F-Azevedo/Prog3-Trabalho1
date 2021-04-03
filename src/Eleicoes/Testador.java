@@ -3,33 +3,34 @@ package Eleicoes;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * Classe que roda o programa.
+ */
 public class Testador {
-	
+
+	/**
+	 * Main do programa.
+	 * @param args possui 3 argumentos, endereço para o arquivo dos candidatos,
+	 *             endereço para o arquivo dos partidos e data de realização da eleição.
+	 */
 	public static void main(String[] args) {
 
-		// Le os dados de entrada da linha de comando
-		/*
-			 _____ _
-			/ ____| |
-			| |    | |__   ___  ___ __ _ _ __
-			| |    | '_ \ / _ \/ __/ _` | '__|
-			| |____| | | |  __| (_| (_| | |
-			\_____|_| |_|\___|\___\__,_|_|
-		*/
+		// Le os dados de entrada da linha de comando.
 		String arq_candidatos = args[0],
 		       arq_partidos = args[1],
 		       data = args[2];
-// 		String arq_candidatos = "./input/ES/vitoria/candidatos.csv",
-//		       arq_partidos = "./input/ES/vitoria/partidos.csv",
-//		       data = "15/11/2020";
-		// Cria scanner para ler as informações da data
+
+		//Lê a data de realização da eleição.
 		LocalDate data_eleicao = Leitor.leData(data);
+
+		//Cria a estrutura da classe eleição.
 		Eleicao eleicao = new Eleicao(data_eleicao);
-		// Cria os partidos
+
+		//Lê os partidos.
 		Leitor.leTodosPartidos(arq_partidos, eleicao);
 		Leitor.leTodosCandidatos(arq_candidatos, data_eleicao, eleicao);
 
-		//System.out.println(eleicao);
+		//Imprime as estatísticas.
 		Estatisticas.imprimeNumVagas(eleicao);
 		Estatisticas.imprimeEleitos(eleicao);
 		Estatisticas.imprimeMaisVotados(eleicao);
