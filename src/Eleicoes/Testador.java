@@ -1,7 +1,8 @@
 package Eleicoes;
 
 import java.time.LocalDate;
-import java.util.*;
+import Entrada.Leitor;
+import Saida.Estatisticas;
 
 /**
  * Classe que roda o programa.

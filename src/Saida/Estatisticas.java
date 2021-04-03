@@ -1,4 +1,6 @@
-package Eleicoes;
+package Saida;
+
+import Eleicoes.*;
 
 import java.util.*;
 
@@ -71,14 +73,14 @@ public class Estatisticas {
         // Se o candidato não estiver dentro da lista dos que foram eleitos, como a lista de candidatos
         // esta ordenada de maneira decrescente por votos, podemos afirmar que ele foi prejudicado pela votação.
         for(Candidato i : e.getCandidatos()){
-           if(!e.getEleitos().contains(i)){
-               Partido aux = e.getPartidos().get(i.getNum_partido());
-               System.out.println((pos) + " - " + i.simpleString(aux.getSigla_partido()));
-           }
-           pos++;
-           if(pos > e.qtdEleitos()) break;
-       }
-       System.out.println();
+            if(!e.getEleitos().contains(i)){
+                Partido aux = e.getPartidos().get(i.getNum_partido());
+                System.out.println((pos) + " - " + i.simpleString(aux.getSigla_partido()));
+            }
+            pos++;
+            if(pos > e.qtdEleitos()) break;
+        }
+        System.out.println();
     }
 
     /**
