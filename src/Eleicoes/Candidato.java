@@ -86,12 +86,12 @@ public class Candidato implements Comparable<Candidato>{
 	/**
 	 * Função de comparação necessária para inserir na TreeSet de forma ordenada.
 	 * Compara por quantidade de votos.
-	 * @param outro o candidato com o qual sera comparado.
+	 * @param outro o candidato com o qual será comparado.
 	 * @return o resultado da comparação.
 	 */
 	@Override
 	public int compareTo(Candidato outro) {
-		//Insere de forma decrescente
+		//Insere de forma decrescente.
 		return Integer.compare(outro.votos, this.votos);
 	}
 

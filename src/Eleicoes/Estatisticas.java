@@ -1,10 +1,6 @@
 package Eleicoes;
 
-import javax.lang.model.type.NullType;
-import java.io.*;
 import java.util.*;
-
-import static java.lang.Math.round;
 
 /**
  * Classe responsável pelos relatórios.

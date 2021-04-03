@@ -11,6 +11,13 @@ public class Partido implements Comparable<Partido>{
     private final TreeSet<Candidato> candidatos = new TreeSet<>();
     private int qtdCandidatosEleitos = 0;
 
+    /**
+     * Construtor do partido.
+     * @param numero_partido o número do partido.
+     * @param votos_legenda a quantidade de votos de legenda recebida pelo partido.
+     * @param nome_partido o nome do partido.
+     * @param sigla_partido a sigla do partido.
+     */
     public Partido(int numero_partido, int votos_legenda, String nome_partido, String sigla_partido){
         this.nome_partido = nome_partido;
         this.sigla_partido = sigla_partido;
@@ -18,55 +25,94 @@ public class Partido implements Comparable<Partido>{
         this.votos_legenda = votos_legenda;
     }
 
-    public String getNome_partido() {
-        return nome_partido;
-    }
-
+    /**
+     * Getter da sigla do partido.
+     * @return a sigla do partido.
+     */
     public String getSigla_partido() {
         return sigla_partido;
     }
 
+    /**
+     * Getter do número do partido.
+     * @return o número do partido.
+     */
     public int getNumero_partido() {
         return numero_partido;
     }
 
+    /**
+     * Getter dos votos de legenda do partido.
+     * @return os votos de legenda do partido.
+     */
     public int getVotos_legenda() {
         return votos_legenda;
     }
 
-    public int getVotos_nominais() {
-        return votos_nominais;
-    }
-
+    /**
+     * Função para incrementar os votos nominais do partido.
+     * @param incremento numero de votos que servira de incremento.
+     */
     public void add_Votos_nominais(int incremento) {
         this.votos_nominais += incremento;
     }
 
+    /**
+     * Getter dos candidatos do partido.
+     * @return os candidatos do partido.
+     */
     public TreeSet<Candidato> getCandidatos() {
         return candidatos;
     }
 
+    /**
+     * Função para calcular os votos totais do partido.
+     * @return os votos totais do partido.
+     */
     public int votosTotais(){ return this.votos_legenda + this.votos_nominais; }
 
+    /**
+     * Função para adicionar um candidato ao partido.
+     * @param candidato o candidato a ser adicionado.
+     */
     public void add_CandidatoPartido(Candidato candidato) {
         //Atribui os votos recebidos pelo candidato aos votos totais do partido.
         this.add_Votos_nominais(candidato.getVotos());
+
         //Adiciona o candidato ao partido.
         this.candidatos.add(candidato);
+
+        //Se o candidato foi eleito, incrementa a quantidade de vereadores eleitos pelo partido.
         if (candidato.foiEleito()) this.qtdCandidatosEleitos++;
     }
 
-    // Compara o partido a partir dos votos totais e de forma decrescente
+    /**
+     * Função de comparação necessária para inserir no TreeSet de forma ordenada.
+     * Compara pela quantidade de votos totais do partido.
+     * @param outro o partido com o qual será comparado.
+     * @return o resultado da comparação.
+     */
     @Override
-    public int compareTo(Partido outro) { return Integer.compare(outro.votosTotais(), this.votosTotais()); }
+    public int compareTo(Partido outro) {
+        //Insere de forma decrescente.
+        return Integer.compare(outro.votosTotais(), this.votosTotais());
+    }
 
-    // Meio mais simples de imprimir o partido
+    /**
+     * Função para imprimir as informações básicas do partido.
+     * @return a string formatada.
+     */
     @Override
     public String toString() {
         return sigla_partido + " - " + numero_partido;
     }
 
-    // Outro meio de imprimir algumas informações do partido
+    /**
+     * Função para imprimir as informações detalhadas do partido.
+     * Incluindo sigla, numero do partido, quantidade de votos nominais, quantidade de votos de legenda e
+     * quantidade de candidatos eleitos
+     * @return a string formatada.
+     */
     public String simplesString(){
         String s = sigla_partido + " - " + numero_partido + ", " + votosTotais();
         if(votosTotais() == 0)
@@ -86,40 +132,38 @@ public class Partido implements Comparable<Partido>{
 
         return s;
     }
-
-    // Imprime todas as informações do partido incluindo cada candidato
-    public String detailedString(){
-        String space = "         ";
-        return  "Partido: " + "nome_partido= " + nome_partido + ",\n" +
-                space + "sigla_partido= " + sigla_partido + ",\n" +
-                space + "numero_partido= " + numero_partido + ",\n" +
-                space + "votos_legenda= " + votos_legenda + ",\n" +
-                space + "votos_nominais_totais= " + votos_nominais + ",\n" +
-                space + "Candidatos:\n" +
-                "----------------------------------------\n" + candidatos + "\n\n";
-    }
 }
 
+/**
+ * Classe para ordenar os partidos.
+ */
 class comparaMaisVotado implements Comparator<Partido>{
 
+    /**
+     * Função para comparar dois partidos.
+     * Compara pelos votos do candidato mais votado do partido.
+     * O desempate é pelo número do partido.
+     * @param esse partido 1.
+     * @param outro partido 2.
+     * @return o resultado da comparação.
+     */
     @Override
     public int compare(Partido esse, Partido outro){
-        // Trata casos de cantornos caso esse ou outro não tenha candidatos
+        //Trata casos de cantornos caso esse ou outro não tenha candidatos.
         boolean vazioEsse = esse.getCandidatos().size() == 0,
                 vazioOutro = outro.getCandidatos().size() == 0;
         if (vazioEsse && vazioOutro) return 0;
         else if (vazioEsse) return -1;
         else if (vazioOutro) return 1;
 
-        // Após tratamentos dos casos de contornos faz a comparação real
+        //Após tratamentos dos casos de contornos faz a comparação real.
         int votos_outro = outro.getCandidatos().first().getVotos(),
                 votos_esse = esse.getCandidatos().first().getVotos();
+
         if (votos_outro > votos_esse) return 1;
         else if (votos_outro < votos_esse) return -1;
         else if (esse.getNumero_partido() > outro.getNumero_partido()) return 1;
         else if (esse.getNumero_partido() < outro.getNumero_partido()) return -1;
         return 0;
-
-
     }
 }
