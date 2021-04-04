@@ -1,0 +1,136 @@
+@startuml
+package "Eleições"{
+
+Class Eleição{
+__Atribuitos__
+- int total_votos_legenda
+- int total_votos_nominais
+- LocalDate data
+__Métodos__
++ Eleicao()
++ qtdEleitos()
+.. Getters ..
++ getEleitos()
++ getPartidos()
++ getCandidatos()
++ get_total_votos_legenda()
++ get_total_votos_nominais()
+.. Setters ..
++ adicionaEleito()
++ addPartidoEleicao()
++ addCandidatoEleicao()
++ add_total_votos_legenda()
++ add_total_votos_nominais()
+}
+
+Class Partido implements Comparable{
+__Atributos__
+- int numero_partido
+- int qtdCandidatosEleitos
+- int votos_legenda
+- int votos_nominais
+- Str nome_partido
+- Str sigla_partido
+__Métodos__
++ Partido()
++ votosTotais()
+.. Getters ..
++ getCandidatos()
++ getSigla_partido()
++ getVotos_legenda()
++ getNumero_partido()
+.. Setters ..
++ add_Votos_nominais()
++ add_CandidatoPartido()
+.. Comparação ..
++ compareTo()
+.. Impressão ..
++ simplesString()
++ toString()
+}
+
+
+Class Candidato implements Comparable{
+__Atributos__
+- int idade
+- int numero
+- int num_partido
+- int votos
+- char sexo
+- LocalDate nasc
+- Str nome
+- Str nome_urna
+- Str status
+__Métodos__
++ Candidato()
++ foiEleito()
+.. Getters ..
++ getSexo()
++ getIdade()
++ getVotos()
++ getNum_partido()
+.. Comparação ..
++ compareTo()
+.. Impressão ..
++ toString()
++ simpleString()
+}
+
+Class Testador{
+__Métodos__
+main()
+}
+
+}
+
+package "Entrada"{
+
+Class Leitor{
+__Métodos__
++ leData()
++ lePartido()
++ leCandidato()
++ leTodosPartidos()
++ leTodosCandidatos()
+}
+
+}
+
+package "Saida"{
+
+Class Estatisticas{
+__Métodos__
++ imprimeSexo()
++ imprimeIdade()
++ imprimeEleitos()
++ imprimeNumVagas()
++ imprimeTotalVotos()
++ imprimeMaisVotados()
++ imprimePrejudicados()
++ imprimeBeneficiados()
++ imprimePartidosMaisVotados()
++ imprimeMelhorPiorCandidatoPorPartido()
+}
+
+}
+
+Testador - Eleição
+Testador - Leitor
+Testador - Estatisticas
+
+Eleição --> "TreeSet" Candidato : Eleitos
+Eleição --> "TreeSet" Candidato : Candidatos
+Eleição --> "TreeSet" Partido : Partidos
+Partido --> "TreeSet" Candidato : Candidatos
+
+together {
+ class Testador
+ class Partido
+ class Candidato
+ class Eleição
+}
+
+Candidato -[hidden]- Partido
+Partido -[hidden]- Eleição
+Eleição -[hidden]- Testador
+@enduml
