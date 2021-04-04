@@ -2,6 +2,9 @@ package Eleicoes;
 
 import java.util.*;
 
+/**
+ * Classe para trarar coisas relacionadas a um partido da eleição.
+ */
 public class Partido implements Comparable<Partido>{
     private final String nome_partido;
     private final String sigla_partido;
