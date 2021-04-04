@@ -78,7 +78,7 @@ __Métodos__
 
 Class Testador{
 __Métodos__
-main()
++ main()
 }
 
 }
