@@ -2,6 +2,7 @@ package Eleicoes;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 /**
  * Classe para trarar coisas relacionadas a um candidato da eleição.
@@ -83,15 +84,24 @@ public class Candidato implements Comparable<Candidato>{
 		return sexo;
 	}
 
+	public int getNumero(){ return numero; }
+
 	/**
 	 * Função de comparação necessária para inserir na TreeSet de forma ordenada.
-	 * Compara por quantidade de votos.
+	 * Compara por quantidade de votos, em caso de empate a com maior idade terá prioridade.
 	 * @param outro o candidato com o qual será comparado.
 	 * @return o resultado da comparação.
 	 */
 	@Override
 	public int compareTo(Candidato outro) {
 		//Insere de forma decrescente.
+		if(outro.votos == this.votos){
+			if(outro.getIdade() > this.getIdade())
+				return 1;
+			else if(outro.getIdade() < this.getIdade())
+				return -1;
+			return 0;
+		}
 		return Integer.compare(outro.votos, this.votos);
 	}
 
