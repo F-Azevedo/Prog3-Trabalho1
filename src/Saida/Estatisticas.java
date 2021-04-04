@@ -26,7 +26,7 @@ public class Estatisticas {
     public static void imprimeEleitos(Eleicao e) {
         int i = 0;
 
-        System.out.println(Cores.GREEN + "Vereadores eleitos:" + Cores.RESET);
+        System.out.println("Vereadores eleitos:");
 
         // Vereadores eleitos já foram armazenados ordenadamente pelos mais votados de maneira decrescente.
 
@@ -46,7 +46,7 @@ public class Estatisticas {
     public static void imprimeMaisVotados(Eleicao e){
         int i = 0;
 
-        System.out.println(Cores.YELLOW + "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" + Cores.RESET);// Em vez de ordenar irei tirar os n maiores da lista
+        System.out.println("Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):");
 
         // Candidatos já foram armazenados ordenadamente pelo número de votos de maneira decrescente.
 
@@ -66,8 +66,8 @@ public class Estatisticas {
     public static void imprimePrejudicados(Eleicao e){
         int pos = 1;
 
-        System.out.println(Cores.BLUE + "Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos:\n" +
-                "(com sua posição no ranking de mais votados)" + Cores.RESET);
+        System.out.println("Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos:\n" +
+                "(com sua posição no ranking de mais votados)");
 
         // Percorre os candidatos da eleição até o número de candidatos que foi eleito.
         // Se o candidato não estiver dentro da lista dos que foram eleitos, como a lista de candidatos
@@ -92,8 +92,8 @@ public class Estatisticas {
         int totalEleitos = e.qtdEleitos();
         int qtdEleitos = 0, pos = 0;
 
-        System.out.println(Cores.MAGENTA + "Eleitos, que se beneficiaram do sistema proporcional:\n" +
-                "(com sua posição no ranking de mais votados)" + Cores.RESET);
+        System.out.println("Eleitos, que se beneficiaram do sistema proporcional:\n" +
+                "(com sua posição no ranking de mais votados)");
 
         // Percorre a os candidatos da eleição, se o candidato possuir menos votos que os N candidatos que
         // foram eleitos, e ainda não tiver passado por todos os eleitos, podemos afirmar que ele foi beneficiado pela votação.
@@ -119,7 +119,7 @@ public class Estatisticas {
     public static void imprimePartidosMaisVotados(Eleicao e){
         int i = 0;
 
-        System.out.println(Cores.CYAN + "Votação dos partidos e número de candidatos eleitos:" + Cores.RESET);
+        System.out.println("Votação dos partidos e número de candidatos eleitos:");
 
         // Cria uma cópia dos partidos em forma de lista, para que seja possível efetuar a ordenação.
         List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
@@ -142,7 +142,7 @@ public class Estatisticas {
     public static void imprimeMelhorPiorCandidatoPorPartido(Eleicao e){
         int i=0;
 
-        System.out.println(Cores.BLUE + "Primeiro e último colocados de cada partido:" + Cores.RESET);
+        System.out.println("Primeiro e último colocados de cada partido:");
 
         // Cria uma cópia dos partidos em forma de lista, para que seja possível efetuar a ordenação.
         List<Partido> partidos = new LinkedList<>(e.getPartidos().values());
@@ -175,7 +175,7 @@ public class Estatisticas {
             else maior60++;
         }
 
-        System.out.println(Cores.RED + "Eleitos, por faixa etária (na data da eleição):" + Cores.RESET);
+        System.out.println("Eleitos, por faixa etária (na data da eleição):");
         System.out.printf("\t  Idade < 30: %d (%.2f%%)\n", menor30, ((float) menor30 / (float) total) * 100);
         System.out.printf("30 <= Idade < 40: %d (%.2f%%)\n", menor40, ((float) menor40 / (float) total) * 100);
         System.out.printf("40 <= Idade < 50: %d (%.2f%%)\n", menor50, ((float) menor50 / (float) total) * 100);
@@ -200,7 +200,7 @@ public class Estatisticas {
                 masc++;
         }
 
-        System.out.println(Cores.GREEN + "Eleitos, por sexo:" + Cores.RESET);
+        System.out.println("Eleitos, por sexo:");
         System.out.printf("Feminino:\t%d (%.2f%%)\n", fem, ((float) fem / (float) total) * 100);
         System.out.printf("Masculino:\t%d (%.2f%%)\n", masc, ((float) masc / (float) total * 100));
         System.out.println();
@@ -216,7 +216,7 @@ public class Estatisticas {
         int nominal = e.get_total_votos_nominais();
         int total = legenda + nominal;
 
-        System.out.println(Cores.YELLOW + "Total de votos válidos: \t" + Cores.RESET + total);
+        System.out.println("Total de votos válidos: \t" + total);
         System.out.printf("Total de votos nominais:\t%d (%.2f%%)\n", nominal, ((float) nominal / (float) total) * 100);
         System.out.printf("Total de votos de Legenda:\t%d (%.2f%%)\n", legenda, ((float) legenda / (float) total) * 100);
     }
