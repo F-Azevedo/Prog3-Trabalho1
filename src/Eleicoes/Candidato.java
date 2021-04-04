@@ -101,7 +101,10 @@ public class Candidato implements Comparable<Candidato>{
 	 * @return retorna a string formatada.
 	 */
 	public String simpleString(String sigla_partido) {
-		return nome + " / " + nome_urna + " (" + sigla_partido + ", " + votos + " votos)";
+		String retorno = nome + " / " + nome_urna + " (" + sigla_partido + ", " + votos;
+		if (votos > 1) retorno += " votos)";
+		else retorno += " voto)";
+		return retorno;
 	}
 
 	/**
@@ -110,7 +113,10 @@ public class Candidato implements Comparable<Candidato>{
 	 */
 	@Override
 	public String toString() {
-		return nome_urna + " (" + numero + ", " + votos + " votos)";
+		String retorno =  nome_urna + " (" + numero + ", " + votos;
+		if (votos > 1) retorno += " votos)";
+		else retorno += " voto)";
+		return retorno;
 	}
 }
 

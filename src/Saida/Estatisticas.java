@@ -15,7 +15,7 @@ public class Estatisticas {
      * @param e estrutura da classe eleição.
      */
     public static void imprimeNumVagas(Eleicao e) {
-        System.out.println(Cores.RED + "Número de vagas: " + Cores.RESET + e.qtdEleitos() + "\n");
+        System.out.println("Número de vagas: " + e.qtdEleitos() + "\n");
     }
 
     /**
