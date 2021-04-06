@@ -101,8 +101,7 @@ public class Leitor {
 
         } catch(FileNotFoundException exc){
             //Trata a exceção para caso ocorra um erro na abertura do arquivo.
-            System.out.println("Um erro ocorreu ao abrir o arquivo " + nome_arq_entrada);
-            exc.printStackTrace();
+            System.out.println("Um erro ocorreu ao abrir o arquivo " + nome_arq_entrada + "\nFinalizando o programa!");
             System.exit(1);
         }
     }
@@ -154,8 +153,7 @@ public class Leitor {
 
         } catch (FileNotFoundException fe){
             //Trata a exceção para caso ocorra um erro na abertura do arquivo.
-            System.out.println("Um erro ocorreu ao abrir o arquivo " + nome_arq_entrada);
-            fe.printStackTrace();
+            System.out.println("Um erro ocorreu ao abrir o arquivo " + nome_arq_entrada + "\nFinalizando o programa!");
             System.exit(1);
         }
     }
