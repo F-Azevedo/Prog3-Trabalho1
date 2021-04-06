@@ -1,13 +1,15 @@
-package Eleicoes;
+package Testador;
 
 import java.time.LocalDate;
+
+import Eleicoes.Eleicao;
 import Entrada.Leitor;
 import Saida.Estatisticas;
 
 /**
  * Classe que roda o programa.
  */
-public class Testador {
+public class Main {
 
 	/**
 	 * Main do programa.

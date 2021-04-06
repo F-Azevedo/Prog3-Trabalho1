@@ -4,7 +4,7 @@
     <!-- Propriedades do build. -->
     <property name="src" location="src" />
     <property name="bin" location="bin" />
-    <property name="mainClass" value="Eleicoes.Testador" />
+    <property name="mainClass" value="Testador.Main" />
 
     <!-- Inicialização. -->
     <target name="init" description="Inicializa as estruturas necessárias.">
