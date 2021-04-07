@@ -1,4 +1,13 @@
 @startuml
+package "Testador"{
+
+Class Main{
+__Métodos__
++ main()
+}
+
+}
+
 package "Eleições"{
 
 Class Eleição{
@@ -76,11 +85,6 @@ __Métodos__
 + simpleString()
 }
 
-Class Testador{
-__Métodos__
-+ main()
-}
-
 }
 
 package "Entrada"{
@@ -114,9 +118,10 @@ __Métodos__
 
 }
 
-Testador - Eleição
-Testador - Leitor
-Testador - Estatisticas
+Main --- Eleição
+Main --- Leitor
+Main --- Estatisticas
+
 
 Eleição --> "TreeSet" Candidato : Eleitos
 Eleição --> "TreeSet" Candidato : Candidatos
@@ -124,7 +129,6 @@ Eleição --> "TreeSet" Partido : Partidos
 Partido --> "TreeSet" Candidato : Candidatos
 
 together {
- class Testador
  class Partido
  class Candidato
  class Eleição
@@ -132,5 +136,4 @@ together {
 
 Candidato -[hidden]- Partido
 Partido -[hidden]- Eleição
-Eleição -[hidden]- Testador
 @enduml
