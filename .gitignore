@@ -25,7 +25,6 @@ hs_err_pid*
 # Dont send the input files / directory
 input/capitais/
 input/ES/
-input/
 
 # Dont send script
 script/
