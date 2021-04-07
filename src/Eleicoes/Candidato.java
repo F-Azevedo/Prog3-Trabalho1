@@ -84,8 +84,6 @@ public class Candidato implements Comparable<Candidato>{
 		return sexo;
 	}
 
-	public int getNumero(){ return numero; }
-
 	/**
 	 * Função de comparação necessária para inserir na TreeSet de forma ordenada.
 	 * Compara por quantidade de votos, em caso de empate a com maior idade terá prioridade.
@@ -111,6 +109,7 @@ public class Candidato implements Comparable<Candidato>{
 	 * @return retorna a string formatada.
 	 */
 	public String simpleString(String sigla_partido) {
+		//If else para tratar a concordância.
 		String retorno = nome + " / " + nome_urna + " (" + sigla_partido + ", " + votos;
 		if (votos > 1) retorno += " votos)";
 		else retorno += " voto)";
@@ -123,6 +122,7 @@ public class Candidato implements Comparable<Candidato>{
 	 */
 	@Override
 	public String toString() {
+		//If else para tratar a concordância.
 		String retorno =  nome_urna + " (" + numero + ", " + votos;
 		if (votos > 1) retorno += " votos)";
 		else retorno += " voto)";

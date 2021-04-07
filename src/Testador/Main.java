@@ -22,16 +22,18 @@ public class Main {
 				arq_partidos 	= null,
 				data 			= null;
 
-		// Le os dados de entrada da linha de comando.
+		//Tenta atribuir os parametros do programa à variáveis.
 		try {
 			arq_candidatos 	= args[0];
 			arq_partidos 	= args[1];
 			data 			= args[2];
 		}
+		//Se não conseguir, finaliza o programa.
 		catch (ArrayIndexOutOfBoundsException e){
 			System.out.println("Quantidade de argumentos insuficiente, terminando o programa!");
 			System.exit(1);
 		}
+
 		//Lê a data de realização da eleição.
 		LocalDate data_eleicao = Leitor.leData(data);
 

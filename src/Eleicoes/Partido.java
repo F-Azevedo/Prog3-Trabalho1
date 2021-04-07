@@ -76,6 +76,7 @@ public class Partido implements Comparable<Partido>{
 
     /**
      * Função para adicionar um candidato ao partido.
+     * A adiciona ao partido as informações de voto relativas ao candidato.
      * @param candidato o candidato a ser adicionado.
      */
     public void add_CandidatoPartido(Candidato candidato) {
@@ -117,6 +118,7 @@ public class Partido implements Comparable<Partido>{
      * @return a string formatada.
      */
     public String simplesString(){
+        //If else para tratar concordância.
         String s = sigla_partido + " - " + numero_partido + ", " + votosTotais();
         if(votosTotais() == 0)
             s += " voto (" + votos_nominais;

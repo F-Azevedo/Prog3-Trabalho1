@@ -65,6 +65,7 @@ public class Leitor {
 
     /**
      * Função para ler todos os candidatos da eleição.
+     * Finaliza o programa se o nome_arq_entrada for inválido.
      * @param nome_arq_entrada endereço do arquivo onde se encontram as informaçoẽs dos candidatos.
      * @param dia_eleicao data de realização da eleição.
      * @param eleicao estrutura da classe eleição.
@@ -118,6 +119,7 @@ public class Leitor {
 
     /**
      * Função para ler todos os partidos da eleição.
+     * Finaliza o programa se o nome_arq_entrada for inválido.
      * @param nome_arq_entrada endereço do arquivo onde se encontram as informaçoẽs dos partidos.
      * @param eleicao estrutura da classe eleição.
      */

@@ -5,7 +5,7 @@ import Eleicoes.*;
 import java.util.*;
 
 /**
- * Classe responsável pelos relatórios.
+ * Classe responsável pelo eventual calculo e impressão dos relatórios.
  */
 public class Estatisticas {
 
@@ -95,8 +95,9 @@ public class Estatisticas {
         System.out.println("Eleitos, que se beneficiaram do sistema proporcional:\n" +
                 "(com sua posição no ranking de mais votados)");
 
-        // Percorre a os candidatos da eleição, se o candidato possuir menos votos que os N candidatos que
-        // foram eleitos, e ainda não tiver passado por todos os eleitos, podemos afirmar que ele foi beneficiado pela votação.
+        // Percorre a os candidatos da eleição, como a lista de candidatos esta ordenada, a partir do candidato de numero N,
+        // N sendo o numero de candidatos eleitos, se ele foi eleito significa que ele foi beneficiado, ja que não estava entre
+        // os N candidatos mais votados.
         for(Candidato i : e.getCandidatos()){
             pos++;
             if(e.getEleitos().contains(i)){
@@ -166,6 +167,7 @@ public class Estatisticas {
         int total = e.qtdEleitos();
         int menor30 = 0, menor40 = 0, menor50 = 0, menor60 = 0, maior60 = 0;
 
+        //Verifica a quantidade de vereadores eleitos em cada faixa etária.
         for (Candidato i : e.getEleitos()) {
             int idade = i.getIdade();
             if (idade < 30) menor30++;
@@ -193,6 +195,7 @@ public class Estatisticas {
         int total = e.qtdEleitos();
         int fem = 0, masc = 0;
 
+        //Verifica quantos dos vereadores eleitos são homens e quantos são mulheres.
         for (Candidato i : e.getEleitos()) {
             if (i.getSexo() == 'F')
                 fem++;

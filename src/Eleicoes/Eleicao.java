@@ -80,6 +80,7 @@ public class Eleicao {
 
     /**
      * Adiciona um novo partido à eleição.
+     * Adiciona os votos relativos ao partido aos votos de legenda totais da eleição.
      * @param num_partido numero do partido a ser adicionado.
      * @param partido novo partido a ser adicionado.
      */
@@ -93,6 +94,7 @@ public class Eleicao {
 
     /**
      * Adiciona candidatos ao TreeSet de candidatos que participaram da eleição.
+     * Adiciona os votos relativos ao candidato aos votos nominais totais da eleição.
      * @param candidato novo candidato a ser adicionado.
      */
     public void addCandidatoEleicao(Candidato candidato) {
