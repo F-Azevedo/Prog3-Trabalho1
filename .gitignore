@@ -28,3 +28,6 @@ input/ES/
 
 # Dont send script
 script/
+
+# Dont send JavaDoc
+JavaDoc/
